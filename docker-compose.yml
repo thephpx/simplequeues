@@ -1,0 +1,17 @@
+version: '3'
+services:
+  lamp:
+    build: ./config/lamp
+    volumes:
+      - ./app:/app
+      - ./db:/var/lib/mysql
+    ports:
+      - "80:80"
+      - "3306:3306"
+  nodejs:
+    build: ./config/nodejs
+    volumes:
+      - ./front:/front
+    command: ["npm","run","serve","--","--port", "3000"]
+    ports:
+      - "3000:3000"
